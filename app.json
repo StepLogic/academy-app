@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "edusogno-academy",
+    "slug": "edusogno-academy",
+    "version": "1.0.0",
+    "owner": "kojogyaase",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "jsEngine": "hermes",
+
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/Splash.png",
+      "resizeMode": "contain"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "jsEngine": "jsc"
+    },
+    "android": {
+      "package": "com.edusogno.academy",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBOU6KL8FvvQaxS7jBKJvSKVpLAmGWepV4"
+        }
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bcfcddd2-8e76-4434-b74f-09b99b44378d"
+      }
+    }
+  }
+}
