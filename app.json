@@ -23,11 +23,6 @@
     },
     "android": {
       "package": "com.edusogno.academy",
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyBOU6KL8FvvQaxS7jBKJvSKVpLAmGWepV4"
-        }
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
