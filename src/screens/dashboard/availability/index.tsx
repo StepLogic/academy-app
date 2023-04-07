@@ -282,6 +282,7 @@ export default function Availability() {
     <CommonLayout
       heading="Availability"
       subHeading="Select only the slot in which you are"
+      // affix={() => <Slot id={"0"} value={false} />}
     >
       <View
         style={{
