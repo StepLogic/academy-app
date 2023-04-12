@@ -41,29 +41,30 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-      <KeyboardAvoidingView behavior="position" style={styles.content}>
+      <KeyboardAvoidingView
+        behavior="height"
+        style={styles.content}>
         <View style={[tw`px-[${5 * theme.vw}] flex-col`]}>
           <AuthPageHeader />
           <Typography
             variant="headlineLarge"
             style={[
-              tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${
-                6 * theme.vh
-              }]`,
+              tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${6 * theme.vh
+                }]`,
               { color: theme.colors.secondary, fontFamily: "Poppins-Semibold" },
             ]}
           >
             Hey 👋 {"\n"} Good to see you!
           </Typography>
 
-          <View style={tw`flex flex-col mb-8`}>
+          <View style={tw` flex flex-col mb-8`}>
             <TextField
-              placeholder="name@example.com"
+              placeholder="name@example.com "
               placeholderTextColor={theme.colors.primary}
               label={"Email address"}
               name="email"
               control={control}
-              style={tw`mb-2`}
+              style={tw` mb-2`}
             />
             <TextField
               placeholderTextColor={theme.colors.primary}
@@ -98,6 +99,24 @@ const Login = () => {
                 variant="titleMedium"
               >
                 Reset your password
+              </Typography>
+            </TouchableHighlight>
+          </View>
+
+          <View style={tw`flex-row flex items-center mt-4 justify-center`}>
+            <FontAwesome5 name="key" size={24} color={theme.colors.secondary} />
+            <TouchableHighlight
+              onPress={() => navigate.navigate("ForgotPassword")}
+              style={[tw`mt-auto`, { marginLeft: 8 }]}
+            >
+              <Typography
+                style={{
+                  color: theme.colors.secondary,
+                  textDecorationLine: "underline",
+                }}
+                variant="titleMedium"
+              >
+                Don't have an account? Sign up
               </Typography>
             </TouchableHighlight>
           </View>

@@ -7,7 +7,12 @@ import Images from "@res/images";
 import Lottie from "lottie-react-native";
 import { ActivityIndicator } from "react-native-paper";
 
-export default function SplashAnimation() {
+interface SplashAnimationProps {
+  setShowSplash?: (value: boolean) => void;
+}
+
+export default function SplashAnimation(props: SplashAnimationProps) {
+  const { setShowSplash } = props;
   const animationRef = useRef<Lottie>(null);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -22,7 +27,7 @@ export default function SplashAnimation() {
           height: 100 * theme.vh,
           position: "absolute",
           zIndex: 1000,
-          // backgroundColor: theme.colors.red,
+          backgroundColor: theme.colors.white,
         },
       ]}
     >
@@ -50,7 +55,7 @@ export default function SplashAnimation() {
         onLayout={() => {
           animationRef.current?.play();
         }}
-        onAnimationFinish={() => setShow(true)}
+        onAnimationFinish={() => (setShow(true), (typeof setShowSplash === "function" ? setShowSplash(false) : null))}
         style={{
           width: 30 * theme.vh,
           height: 30 * theme.vh,

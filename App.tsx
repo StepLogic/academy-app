@@ -30,7 +30,9 @@ import Typography from "@components/common/Typography";
 SplashScreen.preventAutoHideAsync();
 const Stack = createNativeStackNavigator();
 const AppContent = () => {
-  const { error, showSnack, setShowSnack, user, showSplash } = useAppContext();
+  const { error, showSnack, setShowSnack, user, showSplash, setShowSplash } = useAppContext();
+
+  console.log({ setShowSplash })
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("./assets/fonts/Poppins/Poppins-Medium.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins/Poppins-Regular.ttf"),
@@ -47,7 +49,7 @@ const AppContent = () => {
     return <SplashAnimation />;
   }
   // return <SplashAnimation />;
-  if (showSplash) return <SplashAnimation />;
+  if (showSplash) return <SplashAnimation setShowSplash={setShowSplash} />;
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView
@@ -129,7 +131,6 @@ export default function App() {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const [isR, setISR] = React.useState(false);
-  useEffect(() => {}, [initialState]);
 
   React.useEffect(() => {
     const restoreState = async () => {

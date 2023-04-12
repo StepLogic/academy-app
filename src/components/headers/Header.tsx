@@ -162,7 +162,7 @@ const Header: React.FunctionComponent<BottomDrawerProps> = ({
           flexDirection: "column",
         },
       ]}
-      {...panResponder.panHandlers}
+    // {...panResponder.panHandlers}
     >
       <Animated.View
         style={[
