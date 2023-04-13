@@ -42,9 +42,8 @@ const NewPassword = () => {
         <View style={[tw`px-[${5 * theme.vw}] flex-col`]}>
           <AuthPageHeader />
           <View
-            style={tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${
-              6 * theme.vh
-            } flex items-center`}
+            style={tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${6 * theme.vh
+              } flex items-center`}
           >
             <Typography
               variant="headlineLarge"
@@ -62,6 +61,7 @@ const NewPassword = () => {
 
           <View style={tw`flex flex-col mb-8`}>
             <TextField
+              name="password"
               placeholderTextColor={theme.colors.primary}
               placeholder="*********"
               label={"New Password"}
@@ -95,7 +95,7 @@ const NewPassword = () => {
           >
             confirm
           </Button>
-          {/* <View style={tw`flex-row flex items-center mt-4 justify-center`}>
+          {/* <View style={tw`flex flex-row items-center justify-center mt-4`}>
             <FontAwesome5 name="key" size={24} color={theme.colors.secondary} />
             <TouchableOpacity
               onPress={() => navigate.navigate("Login")}

@@ -162,7 +162,7 @@ const Header: React.FunctionComponent<BottomDrawerProps> = ({
           flexDirection: "column",
         },
       ]}
-      {...panResponder.panHandlers}
+    // {...panResponder.panHandlers}
     >
       <Animated.View
         style={[
@@ -276,7 +276,6 @@ const Header: React.FunctionComponent<BottomDrawerProps> = ({
         ) : (
           <TouchableOpacity
             onPress={() => {
-              console.warn("clicked");
               if (open) {
                 setOpen(false);
                 scaleY.setValue(80);
