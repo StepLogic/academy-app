@@ -104,9 +104,9 @@ const Login = () => {
           </View>
 
           <View style={tw`flex-row flex items-center mt-4 justify-center`}>
-            <FontAwesome5 name="key" size={24} color={theme.colors.secondary} />
+            {/* <FontAwesome5 name="key" size={24} color={theme.colors.secondary} /> */}
             <TouchableHighlight
-              onPress={() => navigate.navigate("ForgotPassword")}
+              onPress={() => navigate.navigate("Register")}
               style={[tw`mt-auto`, { marginLeft: 8 }]}
             >
               <Typography
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 8,
-    paddingTop: 8 * theme.vh,
+    paddingTop: 3 * theme.vh,
     paddingBottom: 4 * theme.vh,
   },
   lowerSection: {

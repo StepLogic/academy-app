@@ -276,7 +276,6 @@ const Header: React.FunctionComponent<BottomDrawerProps> = ({
         ) : (
           <TouchableOpacity
             onPress={() => {
-              console.warn("clicked");
               if (open) {
                 setOpen(false);
                 scaleY.setValue(80);
