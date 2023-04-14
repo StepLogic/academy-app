@@ -161,7 +161,8 @@ export default function App() {
   if (!isReady) {
     return <SplashAnimation />;
   }
-
+//this is to persist the navigation of the app
+  
   return (
     <NavigationContainer
       initialState={initialState}

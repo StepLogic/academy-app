@@ -1,7 +1,3 @@
-// import { useUIContext } from "@contexts/UIContext";
-import Button from "@components/common/Button";
-import Select from "@components/common/Select";
-import TextField from "@components/common/TextField";
 import { theme } from "assets/theme";
 import * as React from "react";
 import {
@@ -234,5 +230,3 @@ const styles = StyleSheet.create({
 });
 
 export default React.memo(AgendaLanding);
-
-// cst studio

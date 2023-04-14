@@ -3,7 +3,7 @@
     "name": "edusogno-academy",
     "slug": "edusogno-academy",
     "version": "1.0.0",
-    "owner": "kojogyaase",
+    "owner": "edusogno",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "jsEngine": "hermes",
