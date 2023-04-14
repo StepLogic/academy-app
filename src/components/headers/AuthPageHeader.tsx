@@ -7,8 +7,21 @@ import { FontAwesome } from "@expo/vector-icons";
 import Typography from "@components/common/Typography";
 export default function AuthPageHeader() {
   return (
-    <View style={tw`h-[40px] flex-row justify-between`}>
-      <Image style={{ width: 94, height: 40 }} source={Images.logo} />
+    <View
+      style={[
+        tw`flex-row justify-between`,
+        {
+          height: theme.vw < 300 ? 30 : 40,
+        },
+      ]}
+    >
+      <Image
+        style={{
+          width: theme.vw < 300 ? 74 : 94,
+          height: theme.vw < 300 ? 30 : 40,
+        }}
+        source={Images.logo}
+      />
       <View
         style={{
           height: 22,

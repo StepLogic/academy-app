@@ -36,8 +36,10 @@ export const theme = {
     pink: "#FF8C8C",
     onPink: "#861313",
 
-    buttonGreen: "#74DFA",
+    buttonGreen: "#31602A",
     onButtonGreen: "#31602A",
     textUnderlineColorLight: "#0000006b",
+
+    primaryBlue: "#2D224C",
   },
 };

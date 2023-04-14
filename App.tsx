@@ -26,11 +26,13 @@ import { useEffect } from "react";
 import { initial } from "lodash";
 import SplashAnimation from "@components/SplashAnimation";
 import Typography from "@components/common/Typography";
+import Register from "@screens/auth/Register";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createNativeStackNavigator();
 const AppContent = () => {
-  const { error, showSnack, setShowSnack, user, showSplash } = useAppContext();
+  const { error, showSnack, setShowSnack, user, showSplash, setShowSplash } = useAppContext();
+
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("./assets/fonts/Poppins/Poppins-Medium.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins/Poppins-Regular.ttf"),
@@ -46,12 +48,15 @@ const AppContent = () => {
   if (!fontsLoaded) {
     return <SplashAnimation />;
   }
-  // return <SplashAnimation />;
-  if (showSplash) return <SplashAnimation />;
+
+  if (showSplash) return <SplashAnimation setShowSplash={setShowSplash} />;
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView
+        edges={["left", "right", "bottom"]}
         style={{
+          // paddingTop: Platform.OS === "android" ? 25 : 0,
+          backgroundColor: theme.colors.primary,
           width: Dimensions.get("window").width,
           height: Dimensions.get("window").height,
           flex: 1,
@@ -74,6 +79,11 @@ const AppContent = () => {
               <Stack.Screen
                 name="NewPassword"
                 component={NewPassword}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Register"
+                component={Register}
                 options={{ headerShown: false }}
               />
             </>
@@ -129,7 +139,6 @@ export default function App() {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const [isR, setISR] = React.useState(false);
-  useEffect(() => {}, [initialState]);
 
   React.useEffect(() => {
     const restoreState = async () => {

@@ -45,9 +45,7 @@ function TextField(props: Props) {
           style={[
             styles.label,
             {
-              color: Boolean(error?.message)
-                ? theme.colors.error
-                : theme.colors.secondary,
+              color: theme.colors.secondary,
             },
           ]}
           variant="labelLarge"
@@ -57,11 +55,9 @@ function TextField(props: Props) {
       )}
       <TextInput
         value={field.value}
-        onEndEditing={() => Keyboard.dismiss()}
         onChangeText={field.onChange}
         secureTextEntry={secureTextEntry}
         textColor={theme.colors.secondary}
-        mode="flat"
         underlineColor={
           underlineColor || (theme.colors as any).textUnderlineColorLight
         }
@@ -71,8 +67,8 @@ function TextField(props: Props) {
             ? theme.colors.error
             : theme.colors.primary
         }
-        style={[styles.rootInput]}
-        contentStyle={[{ width: "100%", flex: 1 }]}
+        style={[styles.rootInput, { width: "100%" }]}
+        contentStyle={[{ width: "100%" }]}
         {...rest}
         right={
           password && (
@@ -102,14 +98,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderStyle: "solid",
     width: "100%",
-    height: 59,
-    flexDirection: "row",
+    height: theme.vw < 300 ? 40 : 59,
     paddingHorizontal: theme.inputPaddingHorizontal,
     backgroundColor: "transparent",
     paddingVertical: theme.inputPaddingVertical,
     boxSizing: "border-box",
-    alignItems: "center",
-    justifyContent: "flex-start",
     fontSize: 20,
     fontFamily: "Poppins-Medium",
     color: theme.colors.secondary,

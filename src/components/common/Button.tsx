@@ -1,3 +1,4 @@
+import { theme } from "@assets/theme";
 import { ReactNode } from "react";
 import { StyleSheet } from "react-native";
 import { ButtonProps } from "react-native-paper";
@@ -30,11 +31,11 @@ export default Button;
 const styles = StyleSheet.create({
   root: {
     width: "100%",
-    height: 59,
+    height: theme.vw < 300 ? 49 : 59,
   },
   labelStyle: {
     fontWeight: "600",
-    fontSize: 20,
+    fontSize: theme.vw < 300 ? 18 : 24,
     lineHeight: 24,
     fontFamily: "Poppins-Semibold",
   },

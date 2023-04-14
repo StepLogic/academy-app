@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 5,
     marginRight: 5,
-    height: theme.vh * 4,
+    height: 25,
     maxHeight: 26,
     minHeight: 23,
     borderRadius: 5,

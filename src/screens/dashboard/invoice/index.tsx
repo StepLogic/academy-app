@@ -341,6 +341,7 @@ const Invoice = () => {
     >
       {payments && payments.length > 0 ? (
         <FlatList
+          contentContainerStyle={{ flex: 1 }}
           maxToRenderPerBatch={4}
           data={payments}
           renderItem={renderItem}

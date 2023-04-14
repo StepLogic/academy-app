@@ -1,4 +1,4 @@
-// import { useUIContext } from "@contexts/UIContext";
+import "@expo/match-media";
 import Button from "@components/common/Button";
 import TextField from "@components/common/TextField";
 import Typography from "@components/common/Typography";
@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppContext } from "@api/context/AppContext";
-
+import { useMediaQuery } from "react-responsive";
 const Login = () => {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -41,29 +41,34 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-      <KeyboardAvoidingView behavior="position" style={styles.content}>
+      <KeyboardAvoidingView behavior="height" style={styles.content}>
         <View style={[tw`px-[${5 * theme.vw}] flex-col`]}>
           <AuthPageHeader />
-          <Typography
-            variant="headlineLarge"
-            style={[
-              tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${
-                6 * theme.vh
-              }]`,
-              { color: theme.colors.secondary, fontFamily: "Poppins-Semibold" },
-            ]}
-          >
-            Hey 👋 {"\n"} Good to see you!
-          </Typography>
+          {
+            <Typography
+              variant={theme.vw < 300 ? "titleLarge" : "headlineLarge"}
+              style={[
+                tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${
+                  6 * theme.vh
+                }]`,
+                {
+                  color: theme.colors.secondary,
+                  fontFamily: "Poppins-Semibold",
+                },
+              ]}
+            >
+              Hey 👋 {"\n"} Good to see you!
+            </Typography>
+          }
 
-          <View style={tw`flex flex-col mb-8`}>
+          <View style={tw` flex flex-col mb-${theme.vw < 300 ? "1" : "8"}`}>
             <TextField
-              placeholder="name@example.com"
+              placeholder="name@example.com "
               placeholderTextColor={theme.colors.primary}
               label={"Email address"}
               name="email"
               control={control}
-              style={tw`mb-2`}
+              style={tw` mb-2`}
             />
             <TextField
               placeholderTextColor={theme.colors.primary}
@@ -84,8 +89,12 @@ const Login = () => {
           >
             log in
           </Button>
-          <View style={tw`flex-row flex items-center mt-4 justify-center`}>
-            <FontAwesome5 name="key" size={24} color={theme.colors.secondary} />
+          <View style={tw`flex-row flex items-center mt-4  justify-center`}>
+            <FontAwesome5
+              name="key"
+              size={theme.vw < 300 ? 16 : 24}
+              color={theme.colors.secondary}
+            />
             <TouchableHighlight
               onPress={() => navigate.navigate("ForgotPassword")}
               style={[tw`mt-auto`, { marginLeft: 8 }]}
@@ -95,11 +104,29 @@ const Login = () => {
                   color: theme.colors.secondary,
                   textDecorationLine: "underline",
                 }}
-                variant="titleMedium"
+                variant={theme.vw < 300 ? "titleSmall" : "titleMedium"}
               >
                 Reset your password
               </Typography>
             </TouchableHighlight>
+          </View>
+
+          <View style={tw`flex-row flex items-center mt-4 justify-center`}>
+            {/* <FontAwesome5 name="key" size={24} color={theme.colors.secondary} /> */}
+            <TouchableOpacity
+              onPress={() => navigate.navigate("Register")}
+              style={[tw`mt-auto`, { marginLeft: 8 }]}
+            >
+              <Typography
+                style={{
+                  color: theme.colors.secondary,
+                  textDecorationLine: "underline",
+                }}
+                variant={theme.vw < 340 ? "titleSmall" : "titleMedium"}
+              >
+                Don't have an account? Sign up
+              </Typography>
+            </TouchableOpacity>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -124,7 +151,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 8,
-    paddingTop: 8 * theme.vh,
+    paddingTop: 3 * theme.vh,
     paddingBottom: 4 * theme.vh,
   },
   lowerSection: {

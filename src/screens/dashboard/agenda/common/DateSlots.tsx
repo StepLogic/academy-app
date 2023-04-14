@@ -40,7 +40,7 @@ const DateSlot = ({ date, events }: Props) => {
       >
         <FontAwesome
           name="circle-o"
-          size={16}
+          size={theme.vw < 300 ? 14 : 16}
           style={{
             // backgroundColor: theme.colors.red,
             marginBottom: 4,

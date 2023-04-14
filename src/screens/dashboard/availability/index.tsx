@@ -305,6 +305,7 @@ export default function Availability() {
               <View style={styles.dayContainer}>{days}</View>
               <View style={[styles.grid]}>
                 <FlashList
+                  contentContainerStyle={{ flex: 1 }}
                   numColumns={7}
                   data={slotsState}
                   estimatedItemSize={31}

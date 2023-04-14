@@ -21,7 +21,7 @@ import tw from "twrnc";
 import { useController } from "react-hook-form";
 
 type Props = { control?: any; name: string } & TextInputProps;
-function TextField(props: Props) {
+function PhoneField(props: Props) {
   const {
     style,
     label,
@@ -45,9 +45,9 @@ function TextField(props: Props) {
   });
 
   const removeCountryCode = (value: string) => {
-    const arr = value.split(" ").reverse();
-    arr.pop();
-    return arr.join("");
+    const arr = value?.split(" ").reverse();
+    arr?.pop();
+    return arr?.join("");
   };
   return (
     <View style={[styles.root, style]}>
@@ -111,10 +111,10 @@ function TextField(props: Props) {
         {error?.message}
       </HelperText>
       <CountryPicker
+        lang="it"
         show={visible}
         // when picker button press you will get the country object with dial code
         pickerButtonOnPress={(item: any) => {
-          console.log("countryCode", item);
           setCountry({ flag: item.flag, dial_code: item.dial_code });
           setVisible(false);
         }}
@@ -122,7 +122,7 @@ function TextField(props: Props) {
     </View>
   );
 }
-export default TextField;
+export default PhoneField;
 const styles = StyleSheet.create({
   root: {
     width: "100%",

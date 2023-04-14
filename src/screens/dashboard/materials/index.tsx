@@ -59,6 +59,7 @@ const Materials = () => {
     >
       {materials && materials.length > 0 ? (
         <FlatList
+          contentContainerStyle={{ flex: 1 }}
           maxToRenderPerBatch={4}
           data={materials}
           renderItem={renderItem}
