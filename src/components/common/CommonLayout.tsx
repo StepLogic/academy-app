@@ -28,7 +28,7 @@ export default function CommonLayout({
         <Typography
           style={{
             fontFamily: "Poppins-Semibold",
-            fontSize: theme.vw < 300 ? 18 : 24,
+            fontSize: theme.vh * 100 < 600 ? 18 : 24,
             color: theme.colors.white,
           }}
         >
@@ -38,7 +38,7 @@ export default function CommonLayout({
           <Typography
             style={{
               fontFamily: "Poppins-Medium",
-              fontSize: theme.vw < 300 ? 12 : 16,
+              fontSize: theme.vh * 100 < 600 ? 12 : 16,
               color: theme.colors.white,
             }}
           >

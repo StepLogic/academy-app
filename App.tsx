@@ -1,3 +1,4 @@
+import "@expo/match-media";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ForgotPassword from "@screens/auth/ForgotPassword";
@@ -5,33 +6,27 @@ import Login from "@screens/auth/Login";
 import NewPassword from "@screens/auth/NewPassword";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import * as React from "react";
-import {
-  ActivityIndicator,
-  Dimensions,
-  SafeAreaView,
-  View,
-} from "react-native";
+import React from "react";
+import { Dimensions, SafeAreaView, View } from "react-native";
 import { Provider as PaperProvider, Snackbar } from "react-native-paper";
 
 import { Linking, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const PERSISTENCE_KEY = "NAVIGATION_STATE_V1";
 import { theme } from "./assets/theme";
 import Dashboard from "@screens/dashboard";
-import StateManager from "src/api/context/AppContext";
-import { useAppContext } from "./src/api/context/AppContext";
-import { useEffect } from "react";
-import { initial } from "lodash";
-import SplashAnimation from "@components/SplashAnimation";
-import Typography from "@components/common/Typography";
-import Register from "@screens/auth/Register";
 
+import StateManager, { useAppContext } from "./src/api/context/AppContext";
+
+import SplashAnimation from "@components/SplashAnimation";
+
+import Register from "@screens/auth/register";
 SplashScreen.preventAutoHideAsync();
+const PERSISTENCE_KEY = "NAVIGATION_STATE_V1";
 const Stack = createNativeStackNavigator();
 const AppContent = () => {
-  const { error, showSnack, setShowSnack, user, showSplash, setShowSplash } = useAppContext();
+  const { error, showSnack, setShowSnack, user, showSplash, setShowSplash } =
+    useAppContext();
 
   const [fontsLoaded] = useFonts({
     "Poppins-Medium": require("./assets/fonts/Poppins/Poppins-Medium.ttf"),
@@ -40,22 +35,21 @@ const AppContent = () => {
     "Poppins-Bold": require("./assets/fonts/Poppins/Poppins-Bold.ttf"),
     "DM Sans": require("./assets/fonts/DM_Sans/DMSans-Medium.ttf"),
   });
+
   const onLayoutRootView = React.useCallback(async () => {
     if (fontsLoaded) {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return <SplashAnimation />;
-  }
+  if (!fontsLoaded) return <SplashAnimation />;
 
   if (showSplash) return <SplashAnimation setShowSplash={setShowSplash} />;
+
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView
         edges={["left", "right", "bottom"]}
         style={{
-          // paddingTop: Platform.OS === "android" ? 25 : 0,
           backgroundColor: theme.colors.primary,
           width: Dimensions.get("window").width,
           height: Dimensions.get("window").height,
@@ -63,65 +57,36 @@ const AppContent = () => {
         }}
         onLayout={onLayoutRootView}
       >
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {user === null ? (
-            <>
-              <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="ForgotPassword"
-                component={ForgotPassword}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="NewPassword"
-                component={NewPassword}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Register"
-                component={Register}
-                options={{ headerShown: false }}
-              />
-            </>
-          ) : (
-            <>
-              <Stack.Screen
-                name="Dashboard"
-                component={Dashboard}
-                options={{ headerShown: false }}
-              />
-            </>
-          )}
-        </Stack.Navigator>
-        {/* {showSnack === true && (
-          <View
-            style={[
-              {
-                width: 100 * theme.vw,
-                justifyContent: "center",
-                alignItems: "center",
-                position: "absolute",
-                bottom: 0,
-                borderRadius: 8,
-                height: 40,
-                backgroundColor: theme.colors.secondary,
-                zIndex: 200,
-                margin: 10,
-                right: 0,
-              },
-            ]}
-          >
-            <ActivityIndicator animating={true} color={theme.colors.green} />
-          </View>
-        )} */}
+        {user === null && (
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ForgotPassword"
+              component={ForgotPassword}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="NewPassword"
+              component={NewPassword}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        )}
+
+        {user !== null && <Dashboard />}
+
         <Snackbar
           style={{
             backgroundColor: theme.colors.secondary,
-            // color: theme.colors.red,
           }}
           duration={4000}
           visible={showSnack}
@@ -143,10 +108,6 @@ export default function App() {
   React.useEffect(() => {
     const restoreState = async () => {
       try {
-        const initialUrl = await Linking.getInitialURL();
-
-        // if (Platform.OS !== "web" && initialUrl == null) {
-        // Only restore state if there's no deep link and we're not on web
         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
         const state = savedStateString
           ? JSON.parse(savedStateString)
@@ -155,7 +116,6 @@ export default function App() {
         if (state !== undefined) {
           setInitialState(state);
         }
-        // }
       } finally {
         await SplashScreen.hideAsync();
         setIsReady(true);
@@ -170,8 +130,7 @@ export default function App() {
   if (!isReady) {
     return <SplashAnimation />;
   }
-//this is to persist the navigation of the app
-  
+
   return (
     <NavigationContainer
       initialState={initialState}

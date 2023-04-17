@@ -6,20 +6,20 @@ import { delay } from "lodash";
 import * as SplashScreen from "expo-splash-screen";
 
 const AppContext = React.createContext<Context>({
-  navigate: (string: string) => { },
-  goBack: () => { },
+  navigate: (string: string) => {},
+  goBack: () => {},
   user: null,
-  handleLogin: () => { },
+  handleLogin: () => {},
   loading: false,
-  setLoading: () => { },
+  setLoading: () => {},
   showSnack: false,
-  setShowSnack: () => { },
+  setShowSnack: () => {},
   error: "",
-  handleLogout: () => { },
-  updateUser: () => { },
-  updateCheckIn: () => { },
-  getRecording: () => { },
-  refresh: () => { },
+  handleLogout: () => {},
+  updateUser: () => {},
+  updateCheckIn: () => {},
+  getRecording: () => {},
+  refresh: () => {},
   showSplash: false,
 });
 
@@ -48,9 +48,7 @@ export default function StateManager(props) {
   }, [isReady]);
 
   const refresh = (showSplash?: boolean) => {
-    if (showSplash) {
-      setShowSplash(true);
-    }
+    setShowSplash(showSplash ?? false);
     getCookie("academy-auth").then((storedValue) => {
       if (storedValue && storedValue !== null) {
         handleAuthentication(storedValue);
@@ -77,7 +75,6 @@ export default function StateManager(props) {
     try {
       setLoading(true);
       const { data } = await Api.post("v1/login", userData);
-
       if (data) populateState(data);
     } catch (error) {
       handleError(error.response.data.message);
@@ -89,8 +86,9 @@ export default function StateManager(props) {
   const handleAuthentication = async (tk: string) => {
     try {
       Api.defaults.headers["Authorization"] = `Bearer ${tk}`;
-      const { data } = await Api.post("v1/authenticate/user");
-      if (data) populateState(data);
+      const res = await Api.post("v1/authenticate/user");
+      console.log("error-handle-authentication", res);
+      if (res?.data) populateState(res?.data);
     } catch (error) {
       handleError(error.message);
       setUser(null);
@@ -148,6 +146,7 @@ export default function StateManager(props) {
     }
 
     setUser({ user, events, exercises, availabilities, materials });
+    console.log("heelr", showSplash);
     if (auth !== null) setCookie("academy-auth", auth);
     const n = () => {
       setShowSplash(false);
@@ -257,7 +256,7 @@ export default function StateManager(props) {
         updateAvailability,
         createFeedback,
         showSplash,
-        setShowSplash
+        setShowSplash,
       }}
     >
       {children}

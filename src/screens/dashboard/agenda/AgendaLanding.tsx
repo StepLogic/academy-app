@@ -2,9 +2,6 @@ import { theme } from "assets/theme";
 import * as React from "react";
 import {
   Animated,
-  FlatList,
-  LayoutChangeEvent,
-  ScrollResponderEvent,
   SectionList,
   StyleSheet,
   TouchableHighlight,
@@ -16,12 +13,8 @@ import DateSlot from "./common/DateSlots";
 import Typography from "@components/common/Typography";
 import { Entypo } from "@expo/vector-icons";
 import moment from "moment";
-import {
-  getDateBetween,
-  getDateTruncated,
-  getDateTruncatedFlashList,
-} from "./calendar";
-import { useState, useEffect, useRef } from "react";
+import { getDateTruncatedFlashList } from "./calendar";
+import { useState, useRef } from "react";
 import Calendar from "./common/Calendar";
 import MonthHeader from "./common/MonthHeader";
 import { Moment } from "moment";
@@ -142,7 +135,7 @@ const AgendaLanding = () => {
             },
           ]}
         >
-          <TouchableHighlight
+          <TouchableOpacity
             style={{
               flex: 1,
               maxWidth: 25,
@@ -155,7 +148,7 @@ const AgendaLanding = () => {
             ) : (
               <Entypo name="chevron-thin-down" size={24} color="white" />
             )}
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <TouchableHighlight
             style={[

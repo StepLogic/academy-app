@@ -1,16 +1,13 @@
-import "@expo/match-media";
 import Button from "@components/common/Button";
 import TextField from "@components/common/TextField";
 import Typography from "@components/common/Typography";
 import AuthPageHeader from "@components/headers/AuthPageHeader";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Images from "@res/images";
+
 import { theme } from "assets/theme";
-import * as React from "react";
+import React from "react";
 import {
-  ImageBackground,
   Keyboard,
-  KeyboardAvoidingView,
   StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
@@ -23,11 +20,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppContext } from "@api/context/AppContext";
 import { useMediaQuery } from "react-responsive";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 const Login = () => {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required(),
   });
+  const isMediumHeight = useMediaQuery({ maxHeight: 600 });
 
   const navigate = useNavigation();
   const { handleLogin, loading } = useAppContext();
@@ -41,12 +40,12 @@ const Login = () => {
   };
   return (
     <View style={styles.root}>
-      <KeyboardAvoidingView behavior="height" style={styles.content}>
+      <KeyboardAwareScrollView style={styles.content}>
         <View style={[tw`px-[${5 * theme.vw}] flex-col`]}>
           <AuthPageHeader />
           {
             <Typography
-              variant={theme.vw < 300 ? "titleLarge" : "headlineLarge"}
+              variant={isMediumHeight ? "titleLarge" : "headlineLarge"}
               style={[
                 tw`text-center font-semibold mt-[${5 * theme.vh}] mb-[${
                   6 * theme.vh
@@ -61,7 +60,7 @@ const Login = () => {
             </Typography>
           }
 
-          <View style={tw` flex flex-col mb-${theme.vw < 300 ? "1" : "8"}`}>
+          <View style={tw` flex flex-col mb-${isMediumHeight ? "1" : "8"}`}>
             <TextField
               placeholder="name@example.com "
               placeholderTextColor={theme.colors.primary}
@@ -92,7 +91,7 @@ const Login = () => {
           <View style={tw`flex-row flex items-center mt-4  justify-center`}>
             <FontAwesome5
               name="key"
-              size={theme.vw < 300 ? 16 : 24}
+              size={theme.vh * 100 < 600 ? 16 : 24}
               color={theme.colors.secondary}
             />
             <TouchableHighlight
@@ -104,7 +103,7 @@ const Login = () => {
                   color: theme.colors.secondary,
                   textDecorationLine: "underline",
                 }}
-                variant={theme.vw < 300 ? "titleSmall" : "titleMedium"}
+                variant={isMediumHeight ? "titleSmall" : "titleMedium"}
               >
                 Reset your password
               </Typography>
@@ -112,7 +111,6 @@ const Login = () => {
           </View>
 
           <View style={tw`flex-row flex items-center mt-4 justify-center`}>
-            {/* <FontAwesome5 name="key" size={24} color={theme.colors.secondary} /> */}
             <TouchableOpacity
               onPress={() => navigate.navigate("Register")}
               style={[tw`mt-auto`, { marginLeft: 8 }]}
@@ -122,20 +120,14 @@ const Login = () => {
                   color: theme.colors.secondary,
                   textDecorationLine: "underline",
                 }}
-                variant={theme.vw < 340 ? "titleSmall" : "titleMedium"}
+                variant={isMediumHeight ? "titleSmall" : "titleMedium"}
               >
                 Don't have an account? Sign up
               </Typography>
             </TouchableOpacity>
           </View>
         </View>
-      </KeyboardAvoidingView>
-      {/* <ImageBackground
-        source={Images.loginLowerSectionBackground}
-        style={styles.lowerSection}r
-      >
-     
-      </ImageBackground> */}
+      </KeyboardAwareScrollView>
     </View>
   );
 };

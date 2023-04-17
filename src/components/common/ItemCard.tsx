@@ -57,13 +57,14 @@ const styles = StyleSheet.create({
   },
   heading: {
     color: theme.colors.primary,
-    fontSize: theme.vw < 300 ? 22 : 25,
+    fontSize: theme.vh * 100 < 600 ? 22 : 25,
     maxHeight: 30,
     fontFamily: "Poppins-Semibold",
     flex: 1,
   },
   subHeading: {
-    fontSize: theme.vw < 300 ? 12 + theme.vh * 0.01 : 15 + theme.vh * 0.01,
+    fontSize:
+      theme.vh * 100 < 600 ? 12 + theme.vh * 0.01 : 15 + theme.vh * 0.01,
     height: 23 + theme.vh * 0.01,
     fontFamily: "Poppins-Semibold",
     color: theme.colors.secondary,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: "Poppins-Semibold",
-    fontSize: theme.vw < 300 ? 18 : 20,
+    fontSize: theme.vh * 100 < 600 ? 18 : 20,
     textTransform: "uppercase",
     color: theme.colors.primary,
     marginRight: 5,

@@ -11,14 +11,14 @@ export default function AuthPageHeader() {
       style={[
         tw`flex-row justify-between`,
         {
-          height: theme.vw < 300 ? 30 : 40,
+          height: theme.vh * 100 < 600 ? 30 : 40,
         },
       ]}
     >
       <Image
         style={{
-          width: theme.vw < 300 ? 74 : 94,
-          height: theme.vw < 300 ? 30 : 40,
+          width: theme.vh * 100 < 600 ? 74 : 94,
+          height: theme.vh * 100 < 600 ? 30 : 40,
         }}
         source={Images.logo}
       />

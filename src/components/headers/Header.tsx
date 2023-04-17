@@ -177,85 +177,96 @@ const Header: React.FunctionComponent<BottomDrawerProps> = ({
           },
         ]}
       >
-        <ScrollView
-          style={[
-            {
-              flex: 1,
-
-              width: "100%",
-            },
-          ]}
-          contentContainerStyle={{
+        <View
+          style={{
+            width: "100%",
             flexDirection: "column",
             alignItems: "center",
-            height: "100%",
+            height: open ? theme.vh * 80 : 0,
           }}
         >
-          <Typography style={[styles.heading]}>your path</Typography>
-          <Link Icon={CaAgenda} label="Agenda" path="AgendaLanding" />
-          <Link Icon={CaExercises} label="Exercises" path="ExercisesLanding" />
+          <ScrollView
+            style={[
+              {
+                width: "100%",
+              },
+            ]}
+            contentContainerStyle={{
+              width: "100%",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography style={[styles.heading]}>your path</Typography>
+            <Link Icon={CaAgenda} label="Agenda" path="AgendaLanding" />
+            <Link
+              Icon={CaExercises}
+              label="Exercises"
+              path="ExercisesLanding"
+            />
 
-          <Link Icon={CaMaterial} label="Materials" path="MaterialsLanding" />
+            <Link Icon={CaMaterial} label="Materials" path="MaterialsLanding" />
 
-          <Typography style={[styles.heading, { marginTop: theme.vh * 2 }]}>
-            your profile
-          </Typography>
+            <Typography style={[styles.heading, { marginTop: theme.vh * 2 }]}>
+              your profile
+            </Typography>
 
-          <Link
-            Icon={CaPersonalInformation}
-            label="Personal info"
-            path="PersonalInfo"
-          />
-          <Link Icon={CaInvoices} label="Invoices" path="InvoicesLanding" />
-          <Link
-            Icon={CaAvailability}
-            label="Availability"
-            path="Availability"
-          />
+            <Link
+              Icon={CaPersonalInformation}
+              label="Personal info"
+              path="PersonalInfo"
+            />
+            <Link Icon={CaInvoices} label="Invoices" path="InvoicesLanding" />
+            <Link
+              Icon={CaAvailability}
+              label="Availability"
+              path="Availability"
+            />
 
-          <TouchableOpacity
-            style={[styles.link, { marginTop: theme.vh * 6 }]}
-            onPress={async () => {
-              toggleMenu();
-              const supported = await Linking.canOpenURL(
-                "https://api.whatsapp.com/send?phone=3715467005"
-              );
-              if (supported) {
-                await Linking.openURL(
+            <TouchableOpacity
+              style={[styles.link, { marginTop: theme.vh * 6 }]}
+              onPress={async () => {
+                toggleMenu();
+                const supported = await Linking.canOpenURL(
                   "https://api.whatsapp.com/send?phone=3715467005"
                 );
-              } else {
-                Alert.alert(
-                  `Don't know how to open this URL: ${"https://api.whatsapp.com/send?phone=3715467005"}`
-                );
-              }
-            }}
-          >
-            <FontAwesome
-              name="whatsapp"
-              size={24}
-              color={theme.colors.secondary}
-              style={[styles.svg, , { marginRight: 8 }]}
-            />
-            <Typography style={[styles.linkText]}>Need help?</Typography>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.link]}
-            onPress={() => {
-              toggleMenu();
-              handleLogout();
-            }}
-          >
-            <SimpleLineIcons
-              name="logout"
-              size={24}
-              style={[styles.svg, { marginRight: 8 }]}
-              color={theme.colors.primary}
-            />
+                if (supported) {
+                  await Linking.openURL(
+                    "https://api.whatsapp.com/send?phone=3715467005"
+                  );
+                } else {
+                  Alert.alert(
+                    `Don't know how to open this URL: ${"https://api.whatsapp.com/send?phone=3715467005"}`
+                  );
+                }
+              }}
+            >
+              <FontAwesome
+                name="whatsapp"
+                size={24}
+                color={theme.colors.secondary}
+                style={[styles.svg, , { marginRight: 8 }]}
+              />
+              <Typography style={[styles.linkText]}>Need help?</Typography>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.link]}
+              onPress={() => {
+                toggleMenu();
+                handleLogout();
+              }}
+            >
+              <SimpleLineIcons
+                name="logout"
+                size={24}
+                style={[styles.svg, { marginRight: 8 }]}
+                color={theme.colors.primary}
+              />
 
-            <Typography style={[styles.linkText]}>Logout</Typography>
-          </TouchableOpacity>
-        </ScrollView>
+              <Typography style={[styles.linkText]}>Logout</Typography>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
       </Animated.View>
       <View
         style={[
@@ -324,7 +335,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   linkText: {
-    fontSize: theme.vw < 300 ? 16 : 20,
+    fontSize: 20,
     fontFamily: "Poppins-Regular",
     marginLeft: 10,
     flex: 9,

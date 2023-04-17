@@ -155,7 +155,7 @@ const AgendaInner = ({ route }) => {
             numberOfLines={1}
             style={[
               {
-                fontSize: theme.vw < 300 ? 18 : 24,
+                fontSize: theme.vh * 100 < 600 ? 18 : 24,
                 color: theme.colors.white,
                 fontFamily: "Poppins-Semibold",
               },
@@ -189,8 +189,8 @@ const AgendaInner = ({ route }) => {
               <View style={tw`flex flex-1 flex-col items-center`}>
                 <Image
                   style={{
-                    width: theme.vw < 300 ? 90 : 132,
-                    height: theme.vw < 300 ? 90 : 132,
+                    width: theme.vh * 100 < 600 ? 90 : 132,
+                    height: theme.vh * 100 < 600 ? 90 : 132,
                     borderRadius: 66,
                   }}
                   source={
@@ -316,13 +316,13 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   label: {
-    fontSize: theme.vw < 300 ? 10 : 13,
-    height: theme.vw < 300 ? 12 : 18,
+    fontSize: theme.vh * 100 < 600 ? 10 : 13,
+    height: theme.vh * 100 < 600 ? 12 : 18,
     fontFamily: "Poppins-Regular",
   },
   value: {
-    fontSize: theme.vw < 300 ? 16 : 20,
-    height: theme.vw < 300 ? 18 : 24,
+    fontSize: theme.vh * 100 < 600 ? 16 : 20,
+    height: theme.vh * 100 < 600 ? 18 : 24,
     fontFamily: "Poppins-Semibold",
   },
   white: {

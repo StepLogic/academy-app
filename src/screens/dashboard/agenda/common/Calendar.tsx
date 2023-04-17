@@ -38,10 +38,11 @@ const Calendar = ({
           style={{
             maxHeight: 204,
             height: 30 * theme.vh,
+            minHeight: 200,
             width: "100%",
             backgroundColor: theme.colors.secondary,
             position: "absolute",
-            top: 140,
+            top: 30 * theme.vh < 140 ? 140 : 30 * theme.vh,
           }}
         >
           <View style={tw`flex-row items-center`}>
@@ -62,7 +63,7 @@ const Calendar = ({
           <View style={tw`w-full flex-col flex-1 mt-2`}>
             {dates.map((week, wIdx) => (
               <View
-                key={"mini-calendar-week-" + wIdx}
+                key={"mini-calendar-week-" + wIdx + "_" + week[0].day}
                 style={tw`flex-row mb-1`}
               >
                 {week.map((day, dIdx) => {

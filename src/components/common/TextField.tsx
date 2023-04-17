@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderStyle: "solid",
     width: "100%",
-    height: theme.vw < 300 ? 40 : 59,
+    height: theme.vh * 100 < 600 ? 40 : 59,
     paddingHorizontal: theme.inputPaddingHorizontal,
     backgroundColor: "transparent",
     paddingVertical: theme.inputPaddingVertical,

@@ -12,7 +12,6 @@ interface SplashAnimationProps {
 }
 
 export default function SplashAnimation(props: SplashAnimationProps) {
-  const { setShowSplash } = props;
   const animationRef = useRef<Lottie>(null);
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -55,7 +54,7 @@ export default function SplashAnimation(props: SplashAnimationProps) {
         onLayout={() => {
           animationRef.current?.play();
         }}
-        onAnimationFinish={() => (setShow(true), (typeof setShowSplash === "function" ? setShowSplash(false) : null))}
+        onAnimationFinish={() => setShow(true)}
         style={{
           width: 30 * theme.vh,
           height: 30 * theme.vh,

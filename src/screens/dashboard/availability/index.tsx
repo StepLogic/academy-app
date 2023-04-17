@@ -305,7 +305,6 @@ export default function Availability() {
               <View style={styles.dayContainer}>{days}</View>
               <View style={[styles.grid]}>
                 <FlashList
-                  contentContainerStyle={{ flex: 1 }}
                   numColumns={7}
                   data={slotsState}
                   estimatedItemSize={31}
@@ -438,6 +437,7 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: "column",
     width: "100%",
+    flex: 1,
     // backgroundColor: theme.colors.red,
     height: "100%",
   },

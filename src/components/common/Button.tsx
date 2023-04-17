@@ -31,11 +31,11 @@ export default Button;
 const styles = StyleSheet.create({
   root: {
     width: "100%",
-    height: theme.vw < 300 ? 49 : 59,
+    height: theme.vh * 100 < 600 ? 49 : 59,
   },
   labelStyle: {
     fontWeight: "600",
-    fontSize: theme.vw < 300 ? 18 : 24,
+    fontSize: theme.vh * 100 < 600 ? 18 : 24,
     lineHeight: 24,
     fontFamily: "Poppins-Semibold",
   },
