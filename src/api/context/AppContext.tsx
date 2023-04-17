@@ -66,7 +66,7 @@ export default function StateManager(props) {
   // }, [showSnack]);
 
   const handleError = (error: any) => {
-    console.log("erro", error);
+    // console.log("erro", error);
     setShowSnack(true);
     setErrorMessage(error);
   };
